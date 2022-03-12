@@ -2,21 +2,22 @@ let arr = []
 
 let video = document.getElementById('video')
 let Stream
-let spinner = true
+let spinner = false
 function ChangeCamera() {
     if (spinner)
         Camera('user')
     else
         Camera({ exact: "environment" })
+    
+    spinner = !spinner
 }
 
 function Camera(cam_object) {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: { facingMode: cam_object } })
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: cam_object , width: { ideal: 1280 }, height: { ideal: 720 }} })
             .then(stream => {
                 video.srcObject = stream
                 video.play()
-                spinner = !spinner
             })
             .catch(err => {
                 alert("Requested Camera not found!");
