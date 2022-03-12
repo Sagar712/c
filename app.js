@@ -22,9 +22,12 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
 }
 
 function ChangeCamera() {
-    navigator.mediaDevices.getUserMedia({video:{advanced:ChangeCamera()}})
+    navigator.mediaDevices.getUserMedia({video:{facingMode:{ exact: "environment" }}})
     .then(stream => {
         video.srcObject = stream
         video.play()
+    })
+    .catch(err => {
+        alert("No rear camera found\n");
     })
 }
