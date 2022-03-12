@@ -1,13 +1,30 @@
 let arr = []
 window.navigator.mediaDevices.enumerateDevices()
-.then(devices => {
-    return devices
-})
 .then(devc => {
     let obj = ''
     devc.map(device => {
         console.log(device);
         obj += `Kind: ${device.kind}\nId: ${device.groupId}\n\n`
+        if(device.kind == 'videoinput')
+            arr.push(device.groupId)
     })
-    alert(obj)
-});
+})
+
+let video = document.getElementById('video')
+let Stream
+
+if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+    navigator.mediaDevices.getUserMedia({video:true})
+    .then(stream => {
+        video.srcObject = stream
+        video.play()
+    })
+}
+
+function ChangeCamera() {
+    navigator.mediaDevices.getUserMedia({video:{advanced:ChangeCamera()}})
+    .then(stream => {
+        video.srcObject = stream
+        video.play()
+    })
+}
