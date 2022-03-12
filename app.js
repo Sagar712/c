@@ -7,7 +7,7 @@ function ChangeCamera() {
     if (spinner)
         Camera('user')
     else
-        Camera({ exact: "environment" })
+        Camera("environment")
     
     spinner = !spinner
 }
@@ -27,13 +27,14 @@ function Camera(cam_object) {
 
 ChangeCamera()
 
-// window.navigator.mediaDevices.enumerateDevices()
-//     .then(devc => {
-//         let obj = ''
-//         devc.map(device => {
-//             console.log(device);
-//             obj += `Kind: ${device.kind}\nId: ${device.groupId}\n\n`
-//             if (device.kind == 'videoinput')
-//                 arr.push(device.groupId)
-//         })
-//     })
+window.navigator.mediaDevices.enumerateDevices()
+    .then(devc => {
+        let obj = ''
+        devc.map(device => {
+            console.log(device);
+            obj += `Kind: ${device.kind}\nId: ${device.groupId}\n\n`
+            if (device.kind == 'videoinput')
+                arr.push(device.groupId)
+        })
+        alert(obj)
+    })
