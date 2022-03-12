@@ -1,5 +1,13 @@
-
-console.log(window.navigator.mediaDevices.enumerateDevices()
+let arr = []
+window.navigator.mediaDevices.enumerateDevices()
 .then(devices => {
-    console.log(devices);
-}));
+    return devices
+})
+.then(devc => {
+    let obj = {}, i=1
+    devc.map(device => {
+        console.log(device.kind);
+        obj[i++] = device.kind
+    })
+    alert(JSON.stringify(obj))
+});
