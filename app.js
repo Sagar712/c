@@ -4,10 +4,10 @@ window.navigator.mediaDevices.enumerateDevices()
     return devices
 })
 .then(devc => {
-    let obj = {}, i=1
+    let obj = ''
     devc.map(device => {
-        console.log(device.kind);
-        obj[i++] = device.kind
+        console.log(device);
+        obj += `Kind: ${device.kind}\nId: ${device.groupId}\n\n`
     })
-    alert(JSON.stringify(obj))
+    alert(obj)
 });
