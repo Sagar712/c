@@ -3,6 +3,17 @@ let arr = []
 let video = document.getElementById('video')
 let Stream
 let spinner = false
+let canvas = document.querySelector('canvas').getContext('2d')
+
+function Capture() {
+    const width = video.clientWidth
+    const height = video.clientHeight
+    document.querySelector('canvas').width = width
+    document.querySelector('canvas').height = height
+    canvas.drawImage(video, 0, 0, width, height)
+    
+}
+
 function ChangeCamera() {
     if (spinner)
         Camera('user')
@@ -36,5 +47,4 @@ window.navigator.mediaDevices.enumerateDevices()
             if (device.kind == 'videoinput')
                 arr.push(device.groupId)
         })
-        alert(obj)
     })
