@@ -16,6 +16,7 @@ body{
   align-items: center;
   overflow-x: hidden;
   background-color: black;
+  color: white;
 }
 
 .cameraView{
@@ -27,16 +28,18 @@ video{
 }
 
 canvas{
+  display: none;
   margin-bottom: 3rem;
 }
 
-button{
+.capture{
   position: fixed;
   bottom: 3rem;
   left: 50%;
   transform: translateX(-50%);
-  height: 3rem;
-  width: 5rem;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
   border: 3px solid white;
   outline: none;
   background-color: black;
@@ -44,7 +47,20 @@ button{
   font-size: 1.1rem;
   font-weight: 500;
 }
-button:active{
+.gallery{
+  position: fixed;
+  bottom: 3.3rem;
+  left: 85%;
+  transform: translateX(-50%);
+  height: 3.3rem;
+  width: 5rem;
+  border: 3px solid white;
+  outline: none;
+  background-color: black;
+  color: white;
+  font-size: 1rem;
+}
+.capture:active, .gallery:active{
   transform: translateX(-50%) scale(0.95);
 }
 

@@ -3,15 +3,38 @@ let arr = []
 let video = document.getElementById('video')
 let Stream
 let spinner = false
-let canvas = document.querySelector('canvas').getContext('2d')
+let canvas = document.querySelector('canvas')
+const ctx = canvas.getContext('2d')
+const localstorage_name = 'Camera app photos'
 
 function Capture() {
     const width = video.clientWidth
     const height = video.clientHeight
     document.querySelector('canvas').width = width
     document.querySelector('canvas').height = height
-    canvas.drawImage(video, 0, 0, width, height)
-    
+    canvas.width = width
+    canvas.height = height
+    ctx.drawImage(video, 0, 0, width, height)
+    const dataURL = canvas.toDataURL('image/jpeg')
+    saveToGallery(dataURL)
+}
+
+function saveToGallery(data_url) {
+    if(localStorage.getItem(localstorage_name)==null){
+        localStorage.setItem(localstorage_name, JSON.stringify({}))
+    }
+    let i=1
+    let obj = JSON.parse(localStorage.getItem(localstorage_name))
+    while(obj[i]!=null){
+        i++
+    }
+    obj[i] = data_url
+    localStorage.setItem(localstorage_name, JSON.stringify(obj))
+    console.log(obj);
+}
+
+function Redirect() {
+    window.location.href='./gallery.html'
 }
 
 function ChangeCamera() {
@@ -42,7 +65,7 @@ window.navigator.mediaDevices.enumerateDevices()
     .then(devc => {
         let obj = ''
         devc.map(device => {
-            console.log(device);
+            //console.log(device);
             obj += `Kind: ${device.kind}\nId: ${device.groupId}\n\n`
             if (device.kind == 'videoinput')
                 arr.push(device.groupId)

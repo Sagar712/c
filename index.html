@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <title>Document</title>
+    <title>Camera</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./index.css">
     <script src="./app.js" defer></script>
 </head>
@@ -12,7 +18,8 @@
     <div class="cameraView">
         <video id = 'video' autoplay></video>
     </div>
-    <button onclick="Capture()">Capture</button>
+    <button class="capture" onclick="Capture()"><i class="fas fa-camera"></i></button>
+    <button class="gallery" onclick="Redirect()">Photos></button>
     <canvas></canvas>
 </body>
 </html>
