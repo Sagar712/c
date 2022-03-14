@@ -23,5 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function ImageClicked(id) {
+    let obj = JSON.parse(localStorage.getItem(localstorage_name))
     console.log(id);
+    let Photo = document.querySelector('.opened')
+    let node = document.createElement('img')
+    node.setAttribute('src', obj[id])
+    Photo.appendChild(node)
+    document.querySelector('.opened').classList.add('active')
+    document.querySelector('.Opacitor').classList.add('active')
+}
+
+function ImgClosed() {
+    document.querySelector('.opened').classList.remove('active')
+    document.querySelector('.Opacitor').classList.remove('active')
+    let node = document.querySelector('.opened img')
+    let Photo = document.querySelector('.opened')
+    Photo.removeChild(node)
 }
